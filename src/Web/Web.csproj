@@ -8,6 +8,11 @@
     <AssemblyName>CA1.Web</AssemblyName>
   </PropertyGroup>
 
+  <!-- Skip NSwag for Visual Studio builds (covers different VS/MSBuild property cases) -->
+  <PropertyGroup Condition="'$(VisualStudioVersion)' != '' Or '$(BuildingInsideVisualStudio)' == 'true' Or '$(DevEnvDir)' != ''">
+    <SkipNSwag>true</SkipNSwag>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
