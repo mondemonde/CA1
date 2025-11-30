@@ -39,6 +39,14 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Sinks.Console" />
+    <!-- Removed direct NSwag reference, as NSwag.AspNetCore handles it -->
+    <!-- The Web project uses CA1.ServiceDefaults which will bring in Aspire.Hosting properties -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Aspire\CA1.ServiceDefaults\CA1.ServiceDefaults.csproj" />
   </ItemGroup>
 
   <ItemGroup>

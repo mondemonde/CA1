@@ -1,14 +1,30 @@
 using CA1.Infrastructure.Data;
+using CA1.Web.Infrastructure;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using NSwag; // Added for NSwag namespace
+using NSwag.AspNetCore; // Included for NSwag ASP.NET Core integration
+using Serilog; // For Serilog configuration
+using Serilog.AspNetCore; // For builder.Host.UseSerilog extension method
+using Aspire.ServiceDefaults; // For AddServiceDefaults and UseServiceDefaults extension methods
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Host.UseSerilog((context, loggerConfiguration) => loggerConfiguration.ReadFrom.Configuration(context.Configuration));
+
+builder.AddServiceDefaults();
 builder.AddKeyVaultIfConfigured();
 builder.AddApplicationServices();
 builder.AddInfrastructureServices();
 builder.AddWebServices();
 
 var app = builder.Build();
+
+app.UseServiceDefaults();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -35,7 +51,7 @@ app.MapRazorPages();
 
 app.MapFallbackToFile("index.html");
 
-app.UseExceptionHandler(options => { });
+app.UseExceptionHandler();
 
 
 app.MapEndpoints();

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore.Infrastructure; // For CoreEventId
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -25,7 +26,7 @@ public static class DependencyInjection
         {
             options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
             options.UseSqlite(connectionString);
-            options.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+            // Removed: options.ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.PendingModelChangesWarning)); // This warning might no longer exist or be ignorable in EF Core 8
         });
 
 

@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "CA1.AppHost": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true",
+        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:18889",
+        "DOTNET_DASHBOARD_OTLP_HTTP_ENDPOINT_URL": "http://localhost:18890"
+      },
+      "applicationUrl": "https://localhost:64359;http://localhost:64360"
+    }
+  }
+}

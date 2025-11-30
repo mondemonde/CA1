@@ -2,12 +2,27 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <AspireVersion>9.5.2</AspireVersion>
-    <AspnetVersion>10.0.0</AspnetVersion>
-    <EfcoreVersion>10.0.0</EfcoreVersion>
-    <MicrosoftExtensionsVersion>10.0.0</MicrosoftExtensionsVersion>
+    <AspireVersion>9.0.0</AspireVersion> <!-- Updated to Aspire .NET 9 stable -->
+    <AspnetVersion>8.0.0</AspnetVersion> <!-- Updated for .NET 8 -->
+    <EfcoreVersion>8.0.0</EfcoreVersion> <!-- Updated for .NET 8 -->
+    <MicrosoftExtensionsVersion>8.0.1</MicrosoftExtensionsVersion> <!-- Updated for compatibility with Aspire 9 -->
   </PropertyGroup>
   <ItemGroup>
+    <PackageVersion Include="Aspire.Hosting" Version="$(AspireVersion)" />
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="$(AspireVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="$(MicrosoftExtensionsVersion)" />
+    <PackageVersion Include="Serilog.AspNetCore" Version="8.0.0" />
+    <PackageVersion Include="Serilog.Sinks.Console" Version="5.0.0" />
+    <PackageVersion Include="NSwag" Version="13.19.0" />
+    <PackageVersion Include="OpenTelemetry.Api" Version="1.9.0" />
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.8.0" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.8.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.9.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.8.0" />
+    <!-- Removed problematic OpenTelemetry Instrumentation packages, will add back selectively if truly needed -->
+    <!-- Removed OpenTelemetry.Instrumentation.Process and OpenTelemetry.Instrumentation.AdoNet temporarily due to versioning issues -->
+    <!-- Removed OpenTelemetry.Exporter.Console temporarily to simplify -->
     <PackageVersion Include="Ardalis.GuardClauses" Version="5.0.0" />
     <PackageVersion Include="AutoMapper" Version="15.1.0" />
     <PackageVersion Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.4.0" />
